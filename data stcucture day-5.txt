@@ -1,0 +1,103 @@
+1)_#Dictionary (forest of 3 trees:)
+Families = {
+             'Charley':
+                    { 'Sam' :{'Boxy' ,'Rosy'} ,
+                      'Nila ':{'Pepsi'}} ,
+             'Devi ':
+                      {'Tommy':{'Tony'},
+                       'Timmy':{'Hamster'},
+                       'Tammy':{'Hamster'}},
+             'Carlos':
+                    {'Diego':'cat','Ferret': 'Fox' }
+
+
+    
+           }
+for Parent, Children in Families.items():
+    print(f"{Parent} has {len(Children)}kid(s):")
+    print(f"{', and '.join([str(Child)for Child in [*Children]])}")
+
+
+
+##OUTPUT
+-->>
+Charley has 2kid(s):
+Sam, and Nila 
+Devi  has 3kid(s):
+Tommy, and Timmy, and Tammy
+Carlos has 2kid(s):
+Diego, and Ferret
+
+
+
+
+2)
+#BST-INSERTION
+class Node:
+    def __init__(self,key):
+        self.right=None
+        self.left=None
+        self.val=key
+def insert(root,key):
+        if root is None:
+            return Node(key)
+        else:
+            if (root.val== key):
+                return root
+            elif root.val<key:
+                root.right=insert(root.right, key)
+            else:
+                root.left=insert(root.left, key)
+        return root
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val)
+        inorder(root.right)
+
+r = Node(100)
+r= insert(r,50)
+r = insert(r,450)
+r = insert(r,600)
+r = insert(r,30)
+r = insert(r,20)
+inorder(r)
+
+##OUTPUT
+-->>
+20
+30
+50
+100
+450
+600
+
+
+
+3)#import  dictionary for graph
+from collections import defaultdict
+graph=defaultdict(list)
+def addEdges(graph,u,v):
+    graph[u].append(v)
+def generate_edges(graph):
+    edges=[]
+    for node in graph:
+        for neighbour in graph[node]:
+            edges.append((node,neighbour))
+    return edges
+addEdges(graph,'a','c')
+addEdges(graph,'b','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+addEdges(graph,'a','c')
+print(generate_edges(graph))
+
+
+output:
+[('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('a', 'c'), ('b', 'c')]
